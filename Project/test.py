@@ -1,4 +1,5 @@
 import re
+import helpers
 
 fileName = "function_ifunc.c"
 f = open("function.c", "r")
@@ -10,11 +11,13 @@ dataType = ""
 topPart =""
 bottomPart = ""
 count = 0
+dataTypes = ['void', 'bool', 'int', 'double', 'long', 'float' ]
 
 for line in f:
     count = count + 1
     a = line.strip()
-    if re.search("^void.", a):
+    iDataType = helpers.whichOne(a, dataTypes)
+    if  iDataType != -1: 
         orgLine = a
         dataType = re.split("\s", a, 1) 
         print(dataType[0])
